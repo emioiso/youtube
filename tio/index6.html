@@ -1,0 +1,22 @@
+<html>
+	<body id="id-body">
+		<input type="button" value="my button" id="id-mybutton" >
+		<!-- <input type="button" value="ボタン" id="id-btn" > -->
+		<p id="id-p"></p>
+	</body>
+	<script>
+		btn = document.getElementById("id-body")
+		btn.addEventListener("click",myClick)
+		btn.addEventListener("dblclick",myDoubleClick)
+
+		function myClick(event){
+			p = document.getElementById("id-p")
+			p.innerText = "Click"
+		}
+
+		function myDoubleClick(event){
+			p = document.getElementById("id-p")
+			p.innerText = "DoubleClick"
+		}
+	</script>
+</html>
