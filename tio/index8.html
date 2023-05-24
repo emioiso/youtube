@@ -1,0 +1,50 @@
+<html>
+	 <body>
+		<h2>メモ帳アプリ</h2>
+		<!-- テキストボックス -->
+		<input type="text" id="id-memo-text">
+		<!-- メモを追加するボタン -->
+		<button id="id-add-memo">メモを追加する</button>
+		<!-- メモを削除するボタン -->
+		<button id="id-delete-memo">メモを削除する</button>
+		<!-- メモを表示するための領域 -->
+		<div id="id-memo-list"><!-- テキストボックスに入力したメモが入力される --></div>
+		<!-- <p>えみ</p><span>勇気</span> -->
+		<!-- <div id="yuki">
+			<h1>見出し1</h1>
+			<h2>見出し2</h2>
+			<p>段落</p>
+		</div> -->
+		<script>
+			// addBtn要素を取得
+			addBtn = document.getElementById("id-add-memo")
+			//
+			addBtn.addEventListener("click",addMemo)
+			// <div id="id-memo-list"><!-- テキストボックスに入力したメモが入力される --></div>をmemoListに代入
+			memoList = document.getElementById("id-memo-list")
+
+			function addMemo(event){
+				// <input type="text" id="id-memo-text">をmemoTextに代入
+				memoText = document.getElementById("id-memo-text")
+				// <div id="id-memo-list"></div>で受け取ったメモをcurrentMemoList保存する。
+				// memoList = document.getElementById("id-memo-list")
+				// えみの予想 => memoListの内容
+				// 正解
+				// console.log(memoList)
+				// console.log(memoList.innerHTML)
+				// currentMemoListは何してる？
+				// <div id="id-memo-list"></div>のcontentと呼ばれる要素の内容(テキストボックスに入力した値)のみcurrentMemoListに代入している。
+				currentMemoList = memoList.innerHTML
+				memoList.innerHTML = currentMemoList + "・" + memoText.value + "<br>"
+			}
+
+			deleteBtn = document.getElementById("id-delete-memo")
+			deleteBtn.addEventListener("click",deleteMemo)
+
+			function deleteMemo(event){
+				// memoList = document.getElementById("id-memo-list")
+				memoList.innerHTML + ""
+			}
+		</script>
+	 </body>
+</html>
