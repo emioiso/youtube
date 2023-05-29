@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>ジカン・オシエル</title>
+	<link rel="stylesheet" href="jikang_oshiel.css">
+	<link rel="icon" href="favicon.ico">
+</head>
+<body>
+	<div class="header">
+		<h3>ボタンを押すと時間を表示します。</h3>
+		<div>
+			<button id="id-hour">時</button>
+			<button id="id-minutes">分</button>
+			<button id="id-seconds">秒</button>
+		</div>
+	</div>
+	<div class="center">
+		<h3>現在の時刻は・・・</h3>
+		<div class="clock-area">
+			<div class="ji">
+				<span class="timerfont" id="id-hour-output"></span>
+				時
+			</div>
+			<div class="hun">
+				<span class="timerfont" id="id-minutes-output"></span>
+				分
+			</div>
+			<div>
+				<span class="timerfont" id="id-seconds-output"></span>
+				秒
+			</div>
+		</div>
+	</div>
+
+
+	<script>
+		hourBtn = document.getElementById("id-hour")
+		hourBtn.addEventListener("click",checkHour)
+
+		function checkHour(){
+			hour = new Date().getHours()
+			console.log(`${hour}時`)
+			divH = document.getElementById("id-hour-output")
+			divH.innerText = hour
+
+		}
+
+		minutesBtn = document.getElementById("id-minutes")
+		minutesBtn.addEventListener("click",checkMinutes)
+		function checkMinutes(){
+			minutes = new Date().getMinutes()
+			console.log(`${minutes}分`);
+			divM = document.getElementById("id-minutes-output")
+			divM.innerText = minutes
+			// 数字が一桁の場合、その数字の十の位に'0'をつける。
+			if(divM.innerText <= 9){
+				divM.innerText = '0' + divM.innerText
+			}
+		}
+
+		SecondsBtn = document.getElementById("id-seconds")
+		SecondsBtn.addEventListener("click",checkSeconds)
+		function checkSeconds(){
+			seconds = new Date().getSeconds()
+			console.log(`${seconds}秒`);
+			divS = document.getElementById("id-seconds-output")
+			divS.innerText = seconds
+			// 数字が一桁の場合、その数字の十の位に'0'をつける。
+			if(divS.innerText <= 9){
+				divS.innerText = '0' + divS.innerText
+			}
+		}
+
+
+	</script>
+</body>
+</html>

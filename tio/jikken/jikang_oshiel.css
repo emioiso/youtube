@@ -1,0 +1,47 @@
+body {
+	text-align: center;
+	font-family: 'Osaka',sans-serif;
+}
+
+h3{
+	text-align: center;
+	color: gainsboro;
+}
+
+button {
+	margin: 60px;
+	height: 50px;
+	width: 100px;
+}
+
+#id-hour-output {
+	/* padding: 50px; */
+	position: top;
+	top: 500px;
+	width: 100px;
+}
+
+h4 {
+	color: black;
+	margin-top: 130px;
+	margin-left: 350px;
+	letter-spacing:230px;
+}
+.clock-area {
+	display: flex;
+	justify-content: center;
+}
+.timerfont {
+	font-size: 50px;
+	/* letter-spacing: 30px; */
+}
+
+/* .ji {
+	margin: 0px 100px;
+}
+.hun {
+	margin: 0px 100px;
+} */
+#div {
+	max-width: 50px;
+}
