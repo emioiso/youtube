@@ -1,0 +1,82 @@
+<!-- 配列と繰り返し -->
+<html>
+	<body>
+		<!-- <p>商品の金額 : <span class="class-price">1000</span>円</p>
+		<p>商品の金額 : <span class="class-price">100</span>円</p>
+		<p>商品の金額 : <span class="class-price">10</span>円</p>
+		<button id="id-button">合計を計算しない</button>
+		<button id="id-button">合計を計算する</button>
+
+		<p id="id-total-price"></p> -->
+	<script>
+		a = [100,200]
+		// 末尾に追加する
+		a.push(300)
+		// 先頭に追加する
+		a.unshift(99)
+		console.log(a)
+		// btn = document.getElementById("id-button")
+		// btn.addEventListener("click",button)
+
+		// function button(){
+		// 	prices = document.getElementsByClassName("class-price")
+
+		// 	totalPrice = 0
+		// 	for (let index = 0; index < prices.length; index++) {
+		// 		totalPrice =  totalPrice + Number(prices[index].innerText)
+		// 	}
+		// 	totalPriceElement = document.getElementById("id-total-price")
+		// 	totalPriceElement.innerText = "合計金額:" + totalPrice + "円"
+		// }
+		// ーーーーーーーーーーーーーーーーーーー
+		// [配列]
+		// 数値ver
+		// a = [100,200,300]
+		// console.log(a)
+		// console.log(a.length)
+		// console.log(a[0])
+		// console.log(a[1])
+		// console.log(a[2])
+		// 文字列ver
+		// a = ["aaa","bbb","ccc"]
+		// console.log(a)
+		// console.log(a.length)
+		// console.log(a[0])
+		// console.log(a[1])
+		// console.log(a[2])
+		// [繰り返し]
+		// for (i = 0; i < 5; i++) {
+		// 	console.log("i = " + i);
+		// 	console.log("処理");
+		// }
+		//
+		// for (i = 100; i <= 101; i = i + 10) {
+		// 	console.log("i = " + i);
+		// 	console.log("処理");
+		// }
+		// 一回も繰り返し処理をしない
+		// for (i = 100; i <= 10; i = i + 10) {
+		// 	console.log("i = " + i);
+		// 	console.log("処理");
+		// }
+		// 配列と繰り返しを一緒に使う
+		// a = [100,200,300]
+		// for (i = 0; i < a.length; i++) {
+		// 	console.log("i = " + a[i]);
+		// 	console.log("処理");
+		// }
+
+		// for (i = 0; i < a.length; i++) {
+		// 	console.log("i = " + a[i]*10);
+		// 	console.log("処理");
+		// }
+		// 配列と繰り返しと条件分岐を一緒に使う
+		// for (i = 0; i < a.length; i++) {
+		// 	if(a[i] > 100){
+		// 		a[i] = a[i] - 100;
+		// 	}
+		// 	console.log(a[i])
+		// }
+	</script>
+	</body>
+</html>
