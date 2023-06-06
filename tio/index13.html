@@ -1,0 +1,63 @@
+<html>
+	<body>
+	</body>
+	<script>
+		// 配列
+		userArray = [100,"iis_tio"]
+		console.log(userArray)		//userArrayの全要素を表示させる。
+		console.log(userArray[0])
+		console.log(userArray[1])
+
+		//オブジェクト
+		userObject = {
+			id:100,				//プロパティ
+			name:"iis_tio",		//プロパティ
+			hairetu:[100,200],
+			boolHensuu:true,
+
+			profileObject : {
+				address:"xxx",
+				tel:"yyyy",
+				tel2:090,	// javaScriptでは整数の先頭が 0 の場合には、それが8進数の表記であると解釈される。
+							// そのため、01 は8進数として解釈され、10進数の値 1 として扱われる。
+							// なので電話番号は整数ではなく文字列で扱う。
+				"tel3":"090",
+			},
+			// userObjectが持つmyFunctionという関数ではなくmyFunctionというメソッドという名称になる。
+			myFunction: function(){
+				alert("my function")
+			},
+
+			//thisは参照し、変更することができる
+			//thisは参照ver
+			myFunction2: function(){
+				alert("name = " + this.name)
+			},
+			//thisは変更ver
+			myFunction3: function(){
+				alert("name = " + this.name)
+				this.name = "suzuki-san"
+				alert("name = " + this.name)
+			},
+		}
+		userObject.name2 = "hoge"
+		userObject.profileObject.address2 = "zzz"
+
+
+		console.log(userObject)		//userオブジェクトの全プロパティを表示させる。
+		console.log(userObject.id)	//userオブジェクトのidプロパティだけを表示させる。
+		console.log(userObject[0])	//添字は使えない。undefinedになる。
+		console.log(userObject.name)//userオブジェクトのnameプロパティだけを表示させる。
+		console.log(userObject.id,userObject.name)//userオブジェクトのidとnameプロパティを表示させる。
+		console.log(userObject.profileObject.address)
+		console.log(userObject.profileObject.tel2)
+		console.log(userObject.profileObject.tel3)
+		console.log(userObject)//userObjectとprofileObjectのプロパティを確認できる
+		console.log(userObject.name2)//userObject.name2のhogeのプロパティを確認できる
+		console.log(userObject.profileObject.address2)//userObject.profileObject.address2のzzzのプロパティを確認できる
+		// userObject.myFunction()
+		// userObject.myFunction2()
+		// userObject.myFunction3()
+
+	</script>
+</html>
