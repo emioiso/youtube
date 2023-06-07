@@ -1,0 +1,41 @@
+<html>
+	<body>
+	</body>
+	<script>
+		// User型というコンストラクター関数
+		function User(name,address){
+			this.name = name
+			this.address = address
+			this.hobby = "sleeping"
+		}
+		user = new User("tio","xxx")
+		console.log(user)
+
+		// オブジェクト
+		// personは型ではなくpersonというオブジェクトの名前を定義している。
+		// コンストラクター関数にすると、オブジェクトに型を作れる
+		// person = {
+		// 	address:"aaa",
+		// 	tel:"bbb",
+		// 	tel2:080,
+		// };
+
+		//　関数
+		function User2(name,address){
+		}
+
+		// nameが空だったら"name is empty"というアラートを出すバリデーションをするよ
+		function User3(name,address){
+
+			if(name == ""){
+				alert("name is empty")
+				return
+			}
+			this.name = name
+			this.address = address
+			this.hobby = "sleeping"
+		}
+		user = new User3("","xxx")
+		console.log(user3)
+	</script>
+</html>
