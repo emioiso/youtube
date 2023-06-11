@@ -1,0 +1,88 @@
+<html>
+	<body>
+
+	</body>
+	<script>
+		// 配列と配列のオブジェクトは同じ挙動になる。
+		// 配列
+		// a = [1,2,3]
+		// console.log(a)
+		// 配列のオブジェクト
+		// b = new Array(1,2,3)
+		// console.log(b)
+
+		// foreachを使うと配列の値を取得することができる。
+		// a.forEach(element => {
+		// 	console.log(element)
+			// a[0]が配列の値の数分出力される。
+			// a[0]には1が入っているので1が3回出力さえる。
+			// console.log(a[0])
+			// continue,breakがforeachで使えないかどうか実験
+			// if(a[0] == 1){
+				// continue
+				// 以下のエラーが出たのでcontinueはforeachで使えない。
+				// Uncaught SyntaxError: Illegal continue statement: no surrounding iteration statement (at index16.html:22:5)
+				// break
+				// 以下のエラーが出たのでbreakはforeachで使えない。
+				// Uncaught SyntaxError: Illegal break statement (at index16.html:22:5)
+			// }
+		// });
+		// forはforeachと同じことができる。
+		// for(i = 0; i < a.length; i++){
+		// 	console.log(a[i])
+		// }
+
+		// ECサイトの買い物カゴの合計金額を出力する
+		// aの配列を買い物カゴに見立てる
+		// 買い物カゴの中には1円、2円、3円の商品が入ってる事にする。
+
+		// mapの使い方
+		// a = [100,200,300]
+		// b = a.map(function(element){
+		// 	// return element - 50
+		// 	return 0
+		// })
+		// console.log(a)
+		// console.log(b)
+
+		// filter()の使い方
+		// a = [100,200,300]
+		// b = a.filter(function(element){
+		// 	if(element > 100){
+		// 		return true
+		// 	}
+		// 	return false
+		// })
+		// console.log(a)
+		// console.log(b)
+
+		// filter()の使い方実験
+		// 偶数の数字のみfilterする。
+		// a = [100,201,301]
+		// b = a.filter(function(element){
+		// 		return element % 2 == 0
+		// })
+		// console.log(a)
+		// console.log(b)
+		// reduce()の使い方 + 実験
+		// 数の合計を数える
+		// a = [250,450,300]
+		// // 引数に使う単語は何か意味があるのか知りたいので実験。
+		// // 動画では引数をprevとcurrentを引数に入れているけど名称はなんでもいい。
+		// // 今回はeeeとbbbという引数を設定したけど、意味のある単語にした方がいい。
+		// b = a.reduce(function(eee , bbb){
+		// 		return eee + bbb
+		// });
+		// console.log(a)
+		// console.log(b)
+
+		// reduce()の具体例の実験①
+		// お菓子の入った袋の中のお菓子の数を数える。
+		chocolates = [5,4,3,4,3,1]
+		totalChocolates = chocolates.reduce(function(sum , chocolate){
+				return sum + chocolate
+		});
+		console.log(chocolates)
+		console.log(totalChocolates)
+	</script>
+</html>
