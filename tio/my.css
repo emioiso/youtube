@@ -1,0 +1,55 @@
+/* style定義の書き方  (styleのタグの中にCSSを定義する)  */
+button,input{
+	width: 200px;
+	height: 30px;
+	background-color: plum;
+	color:  paleturquoise;
+}
+
+/* style定義の書き方 classを指定するver. (styleのタグの中にCSSを定義する) */
+.button3 {
+	width: 200px;
+	height: 50px;
+	background-color: plum;
+	color: palegoldenrod;
+}
+.text3 {
+	width: 200px;
+	height: 30px;
+	background-color: plum;
+	color: palegoldenrod;
+}
+/* style定義の書き方 classの特徴を活かして一括指定するver. (styleのタグの中にCSSを定義する) */
+.button4 {
+	width: 200px;
+	height: 50px;
+	background-color: plum;
+	color: palegoldenrod;
+}
+
+/* style定義の書き方 idを指定するver1. (styleのタグの中にCSSを定義する) */
+#button5 {
+	width: 200px;
+	height: 50px;
+	background-color: palegoldenrod;
+	color: plum;
+}
+#text5 {
+	width: 200px;
+	height: 30px;
+	background-color: palegoldenrod;
+	color: plum;
+}
+/* style定義の書き方 idを指定するver2. (styleのタグの中にCSSを定義する) */
+#button6 {
+	width: 200px;
+	height: 30px;
+	background-color: palegreen;
+	color: palevioletred;
+}
+#button7 {
+	width: 200px;
+	height: 30px;
+	background-color: palevioletred;
+	color: palegreen;
+}
