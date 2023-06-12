@@ -1,0 +1,110 @@
+<html>
+	<!-- <head>
+		<link rel="stylesheet" href="my.css">
+	</head> -->
+	<body>
+		<!-- <div>インライン定義の書き方 (htmlのタグの中に直接CSSを定義する) </div>
+		<button style="width: 200px; height: 50px; background-color: paleturquoise; color: plum; ">my button</button>
+		<input type="text" style="width: 200px; height: 30px; background-color: paleturquoise; color: plum; ">
+
+		<div>style定義の書き方  (styleのタグの中にCSSを定義する) </div>
+		<button >my button2</button>
+		<input type="text">
+
+		<div>style定義の書き方 <font color="red">class</font>を指定するver<font color="red">1</font>.  (styleタグの中にCSSを定義する) </div>
+		<button class="button3">my button3</button>
+		<input type="text" class="text3">
+
+		<div>style定義の書き方 <font color="red">class</font>を指定するver<font color="red">2</font>.  (styleタグの中にCSSを定義する) </div>
+		<div>class名はidとは違い、class名は重複しても良いのでその特徴を活かして複数あるボタンの装飾を一括で定義（管理）する </div>
+		<button class="button4">my button4</button>
+		<button class="button4">my button4</button>
+
+		<div>style定義の書き方 <font color="red">id</font>を指定するver<font color="red">1</font>.  (styleタグの中にCSSを定義する) </div>
+		<button id="button5">my button5</button>
+		<input type="text" id="text5">
+
+		<div>style定義の書き方 <font color="red">id</font>を指定するver<font color="red">2</font>.  (styleタグの中にCSSを定義する) </div>
+		<button id="button6">my button6</button>
+		<button id="button7">my button7</button> -->
+
+
+		<!-- 実験 -->
+		<!-- インライン定義とstyle定義のタグセレクタではどちらが優先されるのか -->
+		<button style="width: 200px; height: 50px; background-color: paleturquoise; color: plum;">my button</button>
+		<input type="text" style="width: 200px; height: 30px; background-color: paleturquoise; color: plum;">
+		<!-- 実験結果 -->
+		<!-- htmlに直接CSSを定義するインライン定義の方が優先された -->
+
+	</body>
+	<style>
+		/* style定義の書き方  (styleのタグの中にCSSを定義する)  */
+		/* button,input{
+			width: 200px;
+			height: 30px;
+			background-color: plum;
+			color:  paleturquoise;
+		} */
+
+		/* style定義の書き方 classを指定するver. (styleのタグの中にCSSを定義する) */
+		/* .button3 {
+			width: 200px;
+			height: 50px;
+			background-color: plum;
+			color: palegoldenrod;
+		}
+		.text3 {
+			width: 200px;
+			height: 30px;
+			background-color: plum;
+			color: palegoldenrod;
+		} */
+
+		/* style定義の書き方 classの特徴を活かして一括指定するver. (styleのタグの中にCSSを定義する) */
+		/* .button4 {
+			width: 200px;
+			height: 50px;
+			background-color: plum;
+			color: palegoldenrod;
+		} */
+
+		/* style定義の書き方 idを指定するver1. (styleのタグの中にCSSを定義する) */
+		/* #button5 {
+			width: 200px;
+			height: 50px;
+			background-color: palegoldenrod;
+			color: plum;
+		}
+		#text5 {
+			width: 200px;
+			height: 30px;
+			background-color: palegoldenrod;
+			color: plum;
+		} */
+
+		/* style定義の書き方 idを指定するver2. (styleのタグの中にCSSを定義する) */
+		/* #button6 {
+			width: 200px;
+			height: 30px;
+			background-color: palegreen;
+			color: palevioletred;
+		}
+		#button7 {
+			width: 200px;
+			height: 30px;
+			background-color: palevioletred;
+			color: palegreen;
+		} */
+
+		/* 実験 */
+		/* インライン定義とstyle定義のタグセレクタではどちらが優先されるのか */
+		button, input {
+			width: 200px;
+			height: 30px;
+			background-color: palevioletred;
+			color: palegreen;
+		}
+		/* 実験結果 */
+		/* htmlに直接CSSを定義するインライン定義の方が優先された */
+	</style>
+</html>
