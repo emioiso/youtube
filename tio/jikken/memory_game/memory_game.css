@@ -1,0 +1,31 @@
+body {
+	background-color: #3C801A;
+}
+.all_cards {
+	text-align: center;
+}
+
+
+.heartCards {
+	margin-top: 50px;
+	width: 57px;
+	height: 89px;
+	/* background-color: #181E50; */
+	background-color:#D33928;
+	color: white;
+}
+
+.diamondCards {
+	margin-top: 10px;
+	width: 57px;
+	height: 89px;
+	/* background-color: #181E50; */
+	background-color:#D33928;
+	color: white;
+}
+.third {
+	margin-top: 10px;
+}
+.fourth {
+	margin-top: 10px;
+}

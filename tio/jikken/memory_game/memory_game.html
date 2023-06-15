@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>memory_game</title>
+	<link rel="stylesheet" href="memory_game.css">
+	<!-- <script src="memory_game.js"></script> -->
+</head>
+	<body>
+		<!-- <div class="all_player">
+			<div class="me">
+			</div> -->
+		<!-- </div> -->
+		<div class="all_cards">
+			<div class="heart">
+				<button id="heart1"      class="heartCards">◎◎◎</button>
+				<button id="heart2"      class="heartCards">◎◎◎</button>
+				<button id="heart3"    class="heartCards">◎◎◎</button>
+				<button id="heart4"     class="heartCards">◎◎◎</button>
+				<button id="heart5"     class="heartCards">◎◎◎</button>
+				<button id="heart6"      class="heartCards">◎◎◎</button>
+				<button id="heart7"    class="heartCards">◎◎◎</button>
+				<button id="heart8"    class="heartCards">◎◎◎</button>
+				<button id="heart9"    class="heartCards">◎◎◎</button>
+				<button id="heart10"      class="heartCards">◎◎◎</button>
+				<button id="heart11"   class="heartCards">◎◎◎</button>
+				<button id="heart12"   class="heartCards">◎◎◎</button>
+				<button id="heart13" class="heartCards">◎◎◎</button>
+			</div>
+			<div class="diamond">
+				<button id="diamond1"      class="diamondCards">◎◎◎</button>
+				<button id="diamond2"      class="diamondCards">◎◎◎</button>
+				<button id="diamond3"    class="diamondCards">◎◎◎</button>
+				<button id="diamond4"     class="diamondCards">◎◎◎</button>
+				<button id="diamond5"     class="diamondCards">◎◎◎</button>
+				<button id="diamond6"      class="diamondCards">◎◎◎</button>
+				<button id="diamond7"    class="diamondCards">◎◎◎</button>
+				<button id="diamond8"    class="diamondCards">◎◎◎</button>
+				<button id="diamond9"    class="diamondCards">◎◎◎</button>
+				<button id="diamond10"      class="diamondCards">◎◎◎</button>
+				<button id="diamond11"   class="diamondCards">◎◎◎</button>
+				<button id="diamond12"   class="diamondCards">◎◎◎</button>
+				<button id="diamond13" class="diamondCards">◎◎◎</button>
+			</div>
+		</div>
+	</body>
+	<script>
+		// heartArray = Array.from(document.getElementsByClassName("heartCards"));
+		// console.log(heartArray);
+
+		function shuffleArray(array) {
+			for (let i = array.length - 1; i > 0; i--) {
+				const j = Math.floor(Math.random() * (i + 1));
+				[array[i], array[j]] = [array[j], array[i]];
+			}
+		}
+
+		window.addEventListener("DOMContentLoaded", function () {
+			const heartArray = Array.from(document.getElementsByClassName("heartCards"));
+			const numbers = Array.from({length: 13}, (_, index) => index + 1);
+			shuffleArray(numbers);
+			for (let i = 0; i < heartArray.length; i++) {
+				heartArray[i].textContent = numbers[i];
+			}
+
+			let clickedButton = null; // クリックされたボタンを格納する変数
+
+  // クリックイベントのハンドラ関数
+  function handleClick() {
+    if (!clickedButton) {
+      // 初回クリック時
+      clickedButton = this; // クリックされたボタンを保持する
+      this.textContent = this.dataset.number; // クリックされたボタンのテキストを表示する
+    } else {
+      // 2回目以降のクリック時
+      if (this.dataset.number === clickedButton.dataset.number) {
+        // 同じ数字がクリックされた場合
+        clickedButton.removeEventListener("click", handleClick); // クリックイベントリスナーを削除する
+        this.removeEventListener("click", handleClick); // クリックイベントリスナーを削除する
+        clickedButton = null; // クリックされたボタンをリセットする
+      } else {
+        // 異なる数字がクリックされた場合
+        clickedButton.textContent = "◎◎◎"; // 前のボタンをリセットする
+        clickedButton = this; // クリックされたボタンを保持する
+        this.textContent = this.dataset.number; // クリックされたボタンのテキストを表示する
+      }
+    }
+  }
+
+  // ボタンのテキストを設定する
+  for (let i = 0; i < heartArray.length; i++) {
+    const button = heartArray[i];
+    const text = button.textContent; // ボタンの元のテキストを取得する
+    button.dataset.number = text; // データ属性に元のテキストをセットする
+  }
+
+  // ボタンにクリックイベントリスナーを追加
+  for (let i = 0; i < heartArray.length; i++) {
+    const button = heartArray[i];
+    button.addEventListener("click", handleClick);
+  }
+		});
+	</script>
+</html>
