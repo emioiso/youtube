@@ -1,0 +1,109 @@
+<html>
+	<body>
+		<button id="carrot" class="tax">🥕</button>
+		<button id="greenPeppe" class="tax">🫑</button>
+		<button id="onion" class="tax">🧅</button>
+		<button id="wine" class="tax">🍷</button>
+	</body>
+	<script>
+		// constを使う
+		// ボタンを押したら税込金額を教えてくれるプログラム
+		let bag = 0;
+		eightBtns = document.getElementsByClassName("tax")
+		for (let i = 0; i < eightBtns.length; i++) {
+			eightBtns[i].addEventListener("click",(event)=>{
+				const tax8 = 0.08
+				const tax10 = 0.1
+				const id = event.target.id;
+				if(id === "carrot"){
+					bag = 100 * tax8 + 100
+					console.log(bag)
+				} else if(id === "greenPeppe"){
+					bag = 150 * tax8 + 150
+					console.log(bag)
+				} else if(id === "onion"){
+					bag = 200 * tax8 + 200
+					console.log(bag)
+				} else if(id === "wine"){
+					bag = 500 * tax10 + 500
+					console.log(bag)
+				}
+			});
+		}
+
+		// letを使う
+		// ずっと1だけカウントされる。
+		// 仕組み
+		// ボタンがクリックされるたびにカウントに0が代入された後に1が代入されるというのが1クリックの内容になる。
+		// btn = document.getElementById("my-button")
+		// btn.addEventListener("click",(event)=>{
+		// 	let count = 0
+		// 	count = count + 1;
+		// 	console.log(count)
+		// })
+		// // ボタンをクリックするたびに+1される。
+		// let count2 = 0;
+		// btn2 = document.getElementById("my-button2")
+		// btn2.addEventListener("click",(event)=>{
+		// 	count2 = count2 + 1;
+		// 	console.log(count2)
+		// })
+
+		// console.log("変数宣言のletを使う方法")
+		// // スコープの内外で使用できるが、内外それぞれで同じ変数名でも代入の値を使い分けができる
+		// let i = "tio"
+		// for (let i = 0; i < 3; i++) {
+		// 	console.log(i)
+		// }
+		// console.log("name = " + i)
+
+		// btn = document.getElementById("my-button")
+		// btn.addEventListener("click",(event)=>{
+		// 	let totalPrice = 100
+		// 	console.log(totalPrice)
+		// })
+
+		// console.log("変数宣言しないで値を代入する方法")
+		// // my buttonというボタンをクリックされたらfor文で3回になるまでカウントアップされるのに
+		// // 結果的に100が代入されるボタン
+		// i = "tio"
+		// for (i = 0; i < 3; i++) {
+		// 	console.log(i)
+		// }
+		// console.log("name = " + i)
+
+		// btn = document.getElementById("my-button2")
+		// btn.addEventListener("click",(event)=>{
+		// 	totalPrice = 100
+		// 	console.log(totalPrice)
+		// })
+
+		// 変数宣言しないで値を代入する方法とverの違いはあるのか実験
+		// tioさんの動画とコンソールの結果が異なるのはバージョンが違う説
+		// console.log("変数宣言しないで値を代入する方法")
+		// i = "tio"
+		// console.log(i)
+		// for (let i = 0; i < 2; i++) {
+		// 	console.log(i)
+		// 	// スコープの内だからtioの文字列ではなくてiには数字出力される。
+		// 	console.log("name = " + i)
+		// }
+		// // スコープの外だからtioの文字列がiに出力される。
+		// console.log("name = " + i)
+
+		// console.log("変数宣言のvarの値を使って値を代入する方法")
+
+		// // 変数宣言のvarの値を使って値を代入する方法
+		// var b = "tio"
+		// console.log(b)
+		// for (let b = 0; b < 2; b++) {
+		// 	console.log(b)
+		// 	// スコープの内だからtioの文字列ではなくてiには数字出力される。
+		// 	console.log("name = " + b)
+		// }
+		// // スコープの外だからtioの文字列がiに出力される。
+		// console.log("name = " + b)
+		// // 変数宣言しないで値を代入する方法とverの違いはあるのか実験結果
+		// // 変数宣言しないで値を代入する方法とverを使うのは同じ挙動
+	</script>
+</html>
