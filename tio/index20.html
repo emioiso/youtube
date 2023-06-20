@@ -1,0 +1,47 @@
+<html>
+	<body>
+		<div>
+			<h3>メモの登録</h3>
+			title<input type="text" id="id-title"><br>
+			body<textarea id="id-body"></textarea><br>
+			<button id="id-add-button">メモ登録する</button>
+		</div>
+		<dir>
+			<h3>メモの一覧</h3>
+			<button>削除する</button>
+			<table class="table">
+				<thead>
+					<tr>
+						<th scope="col">-</th>
+						<th scope="col">タイトル</th>
+						<th scope="col">作成日</th>
+						<th scope="col">更新日</th>
+						<th scope="col">編集</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<td><input type="checkbox"></td>
+						<td>Mark</td>
+						<td>Otto</td>
+						<td>@mdo</td>
+						<td><button>編集</button></td>
+					</tr>
+				</tbody>
+			</table>
+		</dir>
+	</body>
+	<script>
+		let titleElement = document.getElementById("id-title")
+		let bodyElement = document.getElementById("id-body")
+
+		let addButton = document.getElementById("id-add-button")
+		addButton.addEventListener("click",(event)=>{
+			let title = titleElement.value
+			let body = bodyElement.value
+			// 現在時刻を表示する
+			let createdAt = new Date().toISOString()
+			console.log(title + body + createdAt)
+		})
+	</script>
+</html>
