@@ -1,0 +1,38 @@
+<!--
+	やりたいこと1
+		列、10行、30文字以内入力ができるテキストエリアを作る。
+		テキストエリアはブラウザでサイズを変更できないようにCSSで制御する。
+ -->
+ <html>
+	<body>
+		<textarea id="myTextarea" maxlength="30"cols="10" rows="3" class="fixed-size-textarea"></textarea>
+	</body>
+	<style>
+		/* リサイズを無効にする */
+		.fixed-size-textarea {
+			resize: none;
+		}
+	  </style>
+	<script>
+		// テキストエリアの文字の入力制限のプログラム
+		const textarea = document.getElementById('myTextarea');
+		// addEventListenerの引数のinputは今回の場合だとk
+		textarea.addEventListener('input', function() {
+			if (textarea.value.length > 30) {
+				// myTextareaというidを持つ要素を取得している。
+				// addEventListenerメソッドを使用して、inputイベントに対するイベントリスナーを登録している
+				// 'input' イベントは、ユーザーがテキストエリアでキーボードからの入力が行われたり、
+				// テキストが貼り付けられたり、選択肢が変更されたりした場合に 'input' イベントがトリガーされる。
+				// 入力が行われるたびに、イベントリスナーのコールバック関数が実行される。
+				// その中で、textarea.value.lengthを使って現在のテキストエリアの入力内容の長さを取得する。
+				// 条件文で長さが30を超える場合の処理を行っています。
+				// textarea.value.slice(0, 30)は、テキストエリアの入力内容から最初の0文字目から30文字目までを切り取る。
+				// その結果をtextarea.valueに代入することで、入力を30文字までに制限する。
+				// 結果、テキストエリアに入力された文字列を最大30文字まで制限するためのもの。
+				// テキストエリアに入力が行われるたびに文字列が0番目から30番目の文字以内かどうか判定し制限する。
+				// 文字をカウントし、その値をtextarea.valueに代入している
+				textarea.value = textarea.value.slice(0, 30); // 入力を30文字までに制限
+			}
+		});
+	</script>
+</html>
