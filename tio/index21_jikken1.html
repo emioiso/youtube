@@ -1,0 +1,13 @@
+<!-- innerHTMLを使って文字列が取得できるか実験 -->
+<html>
+	<body>
+		<h1 id="myElement">Hello, World!</h1>
+	</body>
+	<script>
+		const element = document.getElementById("myElement");
+		// innerHTMLプロパティを使用して変更したいコンテンツを代入する。
+		element.innerHTML = "こんにちは、世界！";
+		// innerHTMLプロパティを使用してHTMLを取得
+		console.log(element.innerHTML);
+	</script>
+</html>
