@@ -1,0 +1,18 @@
+<!-- 実験 -->
+<!-- createElement()を使って新しい要素を作る。 -->
+<!-- appendChild()を使って子要素を追加してブラウザに表示させる。-->
+<!--
+	appendChild()で追加した子要素のテキストノードを
+	"ディグダはダグトリオに進化するね。"という文字列にする。
+-->
+<html>
+	<body>
+		<div id="id-div">ディブタグってディグダに似てるね。</div>
+	</body>
+	<script>
+		const parentElement = document.getElementById("id-div");
+		const newElement = document.createElement('div');
+		newElement.textContent = "ディグダはダグトリオに進化するね。";
+		parentElement.appendChild(newElement);
+	</script>
+</html>
