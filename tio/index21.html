@@ -1,0 +1,59 @@
+<html>
+	<body>
+		<div>
+			<h3>メモの登録</h3>
+			title<input type="text" id="id-title"><br>
+			body<textarea id="id-body"></textarea><br>
+			<button id="id-add-button">メモ登録する</button>
+		</div>
+		<dir>
+			<h3>メモの一覧</h3>
+			<button>削除する</button>
+			<table class="table">
+				<thead>
+					<tr>
+						<th scope="col">-</th>
+						<th scope="col">タイトル</th>
+						<th scope="col">作成日</th>
+						<th scope="col">更新日</th>
+						<th scope="col">編集</th>
+					</tr>
+				</thead>
+				<tbody id="id-memo-list">
+					<tr>
+						<td><input type="checkbox"></td>
+						<td>Mark</td>
+						<td>Otto</td>
+						<td>@mdo</td>
+						<td><button>編集</button></td>
+					</tr>
+				</tbody>
+			</table>
+		</dir>
+	</body>
+	<script>
+		let titleElement = document.getElementById("id-title")
+		let bodyElement = document.getElementById("id-body")
+
+		let addButton = document.getElementById("id-add-button")
+		addButton.addEventListener("click",(event)=>{
+			let title = titleElement.value
+			let body = bodyElement.value
+			// 現在時刻を表示する
+			let createdAt = new Date().toISOString()
+			// 動画の最後の時間取得のコードよくわからなかったからメモしておく
+			// let now = new Date()
+			let updatedAt = "なし"
+			console.log(title + body + createdAt)
+
+			// createElement()
+			// 引数に追加したい要素のタグを記入すると新しい要素を作成してくれる。
+			// 新しいtrタグを作成している。
+			let tr = document.createElement("tr")
+			tr.innerHTML = '<td><input type="checkbox"></td>' + title + '<td>' + createdAt + '</td>' + updatedAt + '<td></td><td><button>編集</button></td>'
+			let memoList = document.getElementById("id-memo-list")
+			// trタグの子要素のtrタグを追加してブラウザに表示している。
+			memoList.appendChild(tr)
+		})
+	</script>
+</html>
