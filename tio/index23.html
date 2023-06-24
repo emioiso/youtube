@@ -1,0 +1,82 @@
+<html>
+	<body>
+		<div>
+			<h3>メモの登録</h3>
+			title<input type="text" id="id-title"><br>
+			body<textarea id="id-body"></textarea><br>
+			<button id="id-add-button">メモ登録する</button>
+		</div>
+		<div>
+			<h3>メモの一覧</h3>
+			<button id="id-delete-button">削除する</button>
+			<table class="table">
+				<thead>
+					<tr>
+						<th scope="col">-</th>
+						<th scope="col">タイトル</th>
+						<th scope="col">作成日</th>
+						<th scope="col">更新日</th>
+						<th scope="col">編集</th>
+					</tr>
+				</thead>
+				<tbody id="id-memo-list">
+					<tr>
+						<td><input type="checkbox"></td>
+						<td>Mark</td>
+						<td>Otto</td>
+						<td>@mdo</td>
+						<td><button>編集</button></td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+	</body>
+	<script>
+		// メモのタイトルと本文の値(文字列)を取得する。
+		const titleElement = document.getElementById("id-title")
+		const bodyElement = document.getElementById("id-body")
+
+		const addButton = document.getElementById("id-add-button")
+		addButton.addEventListener("click",(event)=>{
+			const title = titleElement.value
+			const body = bodyElement.value
+
+			// 現在時刻を表示する
+			const now = new Date()
+			const createdAt = now.getFullYear() + "-" + (now.getMonth() + 1) + "-" + now.getDate()
+			const updatedAt = "なし"
+
+			// 新しいtrタグ（メモ）を作成する。
+			const tr = document.createElement("tr")
+			tr.innerHTML = '<td><input type="checkbox"></td>' + title + '<td>' + createdAt + '</td>' + updatedAt + '<td></td><td><button>編集</button></td>'
+			const memoList = document.getElementById("id-memo-list")
+			memoList.appendChild(tr)
+		})
+
+		// 削除機能(まだ削除できないよね？動画では検証見てないから不安メモ残しておく)
+		const deleteButton = document.getElementById("id-delete-button")
+		deleteButton.addEventListener("click",(event)=>{
+			const tbody = document.getElementById("id-memo-list")
+			const trs = tbody.getElementsByTagName("tr")
+			Array.from(trs).filter((tr)=>{
+				const tds = tr.getElementsByTagName("td")
+				const checkedTds = Array.from(tds).filter((td)=>{
+					const input = tr.getElementsByTagName("input")
+					if(input.length == 0){
+						return false;
+					}
+
+					const checkbox = input[0]
+
+					if(checkbox.checked == true){
+						return true
+					}
+					return false
+				})
+				checkedTds.forEach((checkedTd)=>{
+					checkedTd.parentElement.remove()
+				})
+			})
+		})
+	</script>
+</html>
