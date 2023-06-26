@@ -1,0 +1,82 @@
+<html>
+	<body>
+		<div>
+			<h3>メモの登録</h3>
+			title<input type="text" id="id-title"><br>
+			body<textarea id="id-body"></textarea><br>
+			<button id="id-add-button">メモ登録する</button>
+		</div>
+		<div>
+			<h3>メモの一覧</h3>
+			<button id="id-delete-button">削除する</button>
+			<table class="table">
+				<thead>
+					<tr>
+						<th scope="col"><input type="checkbox" id="id-delete-all-memos"></th>
+						<th scope="col">タイトル</th>
+						<th scope="col">作成日</th>
+						<th scope="col">更新日</th>
+						<th scope="col">編集</th>
+					</tr>
+				</thead>
+				<tbody id="id-memo-list">
+				</tbody>
+			</table>
+		</div>
+	</body>
+	<script>
+		// メモのタイトルと本文の値(文字列)を取得する。
+		const titleElement = document.getElementById("id-title")
+		const bodyElement = document.getElementById("id-body")
+
+		const addButton = document.getElementById("id-add-button")
+		addButton.addEventListener("click",(event)=>{
+			const title = titleElement.value
+			const body = bodyElement.value
+
+			// 現在時刻を表示する
+			const now = new Date()
+			const createdAt = now.getFullYear() + "-" + (now.getMonth() + 1) + "-" + now.getDate()
+			const updatedAt = "なし"
+			// 時間を元にして作成されたメモにid番号を与えて他のメモと識別する。
+			// 連打しても異なるidが与えられたのでメモのidは重複しない。
+			const memoId = now.getTime()
+
+			// 新しいtrタグ（メモ）を作成する。
+			const tr = document.createElement("tr")
+			tr.setAttribute("id",memoId)
+			tr.innerHTML = '<td><input class="class-checkbox" data-memo-id="' + memoId +'" type="checkbox"></td>' + title + '<td>' + createdAt + '</td>' + updatedAt + '<td></td><td><button>編集</button></td>'
+			const memoList = document.getElementById("id-memo-list")
+			memoList.appendChild(tr)
+		})
+		//  削除機能パターン2
+		const deleteButton = document.getElementById("id-delete-button")
+		deleteButton.addEventListener("click",(event)=>{
+			const checkboxes = document.getElementsByClassName("class-checkbox")
+			Array.from(checkboxes).forEach((checkbox)=>{
+				if(checkbox.checked == false){
+					return false
+				}
+				const memoId = checkbox.dataset.memoId
+				document.getElementById(memoId).remove()
+			})
+		})
+
+		// 一括削除
+		const deleteAllMemos = document.getElementById("id-delete-all-memos")
+		deleteAllMemos.addEventListener("change",(event)=>{
+			const checkboxes = document.getElementsByClassName("class-checkbox")
+			// メモの数分のチェックボックスの数を数えてチェックボックスの数が0であれば何もしない。
+				if(checkboxes.length == 0){
+					return
+				}
+			Array.from(checkboxes).forEach((checkbox) => {
+				if(deleteAllMemos.checked == true){
+					checkbox.checked = true
+				} else {
+					checkbox.checked = false
+				}
+			});
+		})
+	</script>
+</html>
