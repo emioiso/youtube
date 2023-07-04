@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>childNodes</title>
+</head>
+<body>
+	<div id="menu-list">
+		<p>curry</p>
+		<p>soup</p>
+		<p>sandwich</p>
+	</div>
+</body>
+<script>
+	const dinner = document.getElementById("menu-list")
+	const todayDinner = dinner.childNodes[1].textContent
+	// 添字を0にするとコンソールには何も出力しないが...
+    // textContentでなんのテキストが取得できているか確認すると
+    // 改行(\n)とタブ(\t)が取得できている
+	const todayDinner2 = dinner.childNodes[0].textContent
+
+	console.log(todayDinner)
+	console.log(todayDinner2)
+</script>
+</html>
