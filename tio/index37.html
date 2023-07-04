@@ -1,0 +1,274 @@
+<!-- 同じタイトルがあれば登録できないようにする。-->
+<!doctype html>
+<html lang="ja">
+	<head>
+		<!-- Required meta tags -->
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+
+		<!-- Bootstrap CSS -->
+		<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+
+		<title>メモ帳アプリ</title>
+	</head>
+	<body>
+		<div>
+			<h3>メモの登録</h3>
+			<button id="id-add-button">メモ登録する</button>
+		</div>
+		<div>
+			<h3>メモの一覧</h3>
+			<button id="id-delete-button">削除する</button>
+			<table class="table">
+				<thead>
+					<tr>
+						<th scope="col"><input type="checkbox" id="id-delete-all-memos"></th>
+						<th scope="col">タイトル</th>
+						<th scope="col">作成日</th>
+						<th scope="col">更新日</th>
+						<th scope="col">編集</th>
+					</tr>
+				</thead>
+				<tbody id="id-memo-list">
+				</tbody>
+			</table>
+			<!-- 編集用モーダルのhtml -->
+			<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+				<div class="modal-dialog">
+					<div class="modal-content">
+						<div class="modal-header">
+							<h5 class="modal-title" id="exampleModalLabel">編集</h5>
+								<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+						</div>
+						<!-- 編集画面のタイトル -->
+						<div class="modal-body">
+							<div class="input-group mb-3">
+								<span class="input-group-text" id="inputGroup-sizing-default">タイトル</span>
+								<input type="text" id="id-modal-title" class="form-control" aria-label="Sizing example input"
+								aria-describedby="inputGroup-sizing-default">
+								<input type="hidden" id="id-memo-id">
+							</div>
+							<!-- 編集画面の本文 -->
+							<!-- bodyにidを指定する -->
+							<div class="form-floating">
+								<textarea class="form-control" style="height: 150px;" placeholder="Leave a comment here"
+								id="id-modal-body"></textarea>
+								<label for="id-modal-body">本文</label>
+							</div>
+						</div>
+						<div class="modal-footer">
+							<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+							<button type="button" id="id-update-button" class="btn btn-primary">更新</button>
+						</div>
+					</div>
+				</div>
+			</div>
+			<!-- メモ登録モーダルのhtml -->
+			<div class="modal fade" id="id-add-modal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+				<div class="modal-dialog">
+					<div class="modal-content">
+						<div class="modal-header">
+							<h5 class="modal-title" id="id-add-modal-label">登録</h5>
+								<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+						</div>
+						<!-- 編集画面のタイトル -->
+						<div class="modal-body">
+							<!-- モーダルのタイトルに記入した文字列が一文字以下か100文字以上の時にアラートを出す。 -->
+							<div id="id-validation-error-in-add-modal" class="alert alert-danger" style="display: none;" role="alert"></div>
+							<div class="input-group mb-3">
+								<span class="input-group-text" id="inputGroup-sizing-default">タイトル</span>
+								<input type="text" id="id-add-modal-title" class="form-control" aria-label="Sizing example input"
+								aria-describedby="inputGroup-sizing-default">
+							</div>
+							<!-- 編集画面の本文 -->
+							<!-- bodyにidを指定する -->
+							<div class="form-floating">
+								<textarea class="form-control" style="height: 150px;" placeholder="Leave a comment here"
+								id="id-add-modal-body"></textarea>
+								<label for="id-add-modal-body">本文</label>
+							</div>
+						</div>
+						<div class="modal-footer">
+							<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+							<button type="button" id="id-add-modal-button" class="btn btn-primary">登録</button>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+			integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
+			crossorigin="anonymous">
+		</script>
+	</body>
+	<script>
+		// モーダルの要素を先に取得する。(myModalをグローバル変数にするとモーダルを閉じれる。)
+		const myModal = new bootstrap.Modal(document.getElementById('exampleModal'))
+		const addModal = new bootstrap.Modal(document.getElementById('id-add-modal'))
+
+		const addButtonInModal = document.getElementById("id-add-modal-button")
+		addButtonInModal.addEventListener("click",(event)=>{
+
+			const title = document.getElementById("id-add-modal-title").value
+			const body = document.getElementById("id-add-modal-body").value
+
+			// エラーがなければ二つのエラー文を終了する。
+			// 代入の可能性が2箇所あるからconstではなくletにする
+			let isError = false
+
+			const errorMessage = document.getElementById("id-validation-error-in-add-modal")
+			// エラー文が出力後、エラー文の内容で訂正したら該当のエラー文が消える(エラー文のリセット)
+			errorMessage.innerHTML = ""
+			// titleは1文字以下と100文字以上はだめ
+			if(1 > title.length || title.length > 30){
+				errorMessage.innerHTML = "タイトルの文字は1文字以上30文字以内にしてください。<br>"
+			}
+			// 本文の文字数が1文字未満100文字以上であればエラー分を出力する。
+			if(1 > body.length || body.length > 100){
+				errorMessage.innerHTML = errorMessage.innerHTML + "本文の文字は1文字以上100文字以内にしてください。<br>"
+			}
+
+			// id-memo-listのidをtmp変数に代入して
+			// tmpの子要素つまり、メモの登録があるかどうか(0より大きい場合)
+			// tmpの全ての子要素をArray.fromで配列にしてforEachを使い全部のメモのタイトルを全探索する
+			const tmp = document.getElementById("id-memo-list")
+			// childrenはHTMLCollection型なのでforEachが使えないのでArray.fromで配列に変換する必要がある。
+			if(tmp.children.length > 0){
+				Array.from(tmp.children).forEach((tr)=>{
+					// id-memo-listのidが取得できているか確認
+					// console.log(tr)
+					// t変数に登録したメモのコンテンツを代入している
+					const t = document.getElementById("id-title-in-list-" + tr.id).innerText
+					if(title == t){
+						errorMessage.innerHTML = errorMessage.innerHTML + "すでに登録ずみのタイトルです。<br>"
+					}
+				})
+			}
+
+			// errorMessageのinnerTextが0文字以上であればエラーを出力しない
+			if(errorMessage.innerHTML.length > 0){
+				errorMessage.style.display = ""
+				return
+			}
+
+			// 現在時刻を表示する
+			const now = new Date()
+			const createdAt = now.getFullYear() + "-" + (now.getMonth() + 1) + "-" + now.getDate()
+			const updatedAt = "なし"
+			// 時間を元にして作成されたメモにid番号を与えて他のメモと識別する。
+			// 連打しても異なるidが与えられたのでメモのidは重複しない。
+			const memoId = now.getTime()
+
+			// 新しいtrタグ（メモ）を作成する。
+			const tr = document.createElement("tr")
+			tr.setAttribute("id",memoId)
+
+			const editButtonId = "id-edit-button-" + memoId
+			// モーダルの編集機能のタイトルのidを変数化
+			const idTitleInList = "id-title-in-list-" + memoId
+			const updatedAtId = "id-updated-at-" + memoId
+
+			// シングルの中にダブルを書くとダブルの中文字が文字列として扱われる。
+			// タグごとtr.innerHTMLに代入している
+			tr.innerHTML = '<td><input class="class-checkbox" data-memo-id="' + memoId + '" type="checkbox"></td><td id="' + idTitleInList + '">' + title + '</td><td>'+ createdAt + '</td><td id="' + updatedAtId + '">' + updatedAt + '</td><td><button type="button" data-memo-id="' + memoId + '"id="' + editButtonId + '" class="btn btn-primary">編集</button></td>'
+			const memoList = document.getElementById("id-memo-list")
+			memoList.appendChild(tr)
+
+			// モーダルの編集機能にメモの本文の値を代入する為に新しいinputタグを作成して
+			// ユーザーに対して値を見せなくても良いのでhiddenを使用。
+			const inputForBody = document.createElement("input")
+			//
+			inputForBody.setAttribute("id","id-body-in-list-" + memoId)
+			inputForBody.setAttribute("type","hidden")
+			inputForBody.value = body
+			// trの子要素としてinputタグをセットしている。
+			tr.appendChild(inputForBody)
+
+			// モーダルで編集機能を作っていく
+			const editButton = document.getElementById(editButtonId)
+			editButton.addEventListener("click",(event)=>{
+				// モーダルの編集機能にメモのタイトルと本文の値を代入する。
+				// メモの値を取得する。
+				const memoId = event.currentTarget.dataset.memoId
+				document.getElementById("id-memo-id").value = memoId
+
+				const title = document.getElementById("id-title-in-list-" + memoId).innerText
+				const titleElement = document.getElementById("id-modal-title")
+				titleElement.value = title
+
+				// bodyにメモの本文のidを取得している。
+				const body = document.getElementById("id-body-in-list-" + memoId).value
+				const bodyElement = document.getElementById("id-modal-body")
+				bodyElement.value = body
+				document.getElementById("exampleModalLabel").innerText = "編集"
+				myModal.show()
+			})
+		// 登録ボタンを押したときにモーダルが閉じる
+		addModal.hide()
+		})
+		// モーダルを表示させる関数
+		const addButton = document.getElementById("id-add-button")
+		addButton.addEventListener("click", (event) => {
+			// モーダルのタイトルと本文のボタンを新たに記入するときに空白にする。
+			const title = document.getElementById("id-add-modal-title").value = ""
+			const body = document.getElementById("id-add-modal-body").value = ""
+			addModal.show()
+			// モーダルタイトルのエラー文をリセットする
+			const errorMessage = document.getElementById("id-validation-error-in-add-modal")
+			errorMessage.style.display = "none"
+			errorMessage.innerText = ""
+		})
+			//  削除機能パターン2
+			const deleteButton = document.getElementById("id-delete-button")
+			deleteButton.addEventListener("click",(event)=>{
+				const checkboxes = document.getElementsByClassName("class-checkbox")
+				Array.from(checkboxes).forEach((checkbox)=>{
+					if(checkbox.checked == false){
+						return false
+					}
+					const memoId = checkbox.dataset.memoId
+					document.getElementById(memoId).remove()
+				})
+			})
+
+			// 一括削除
+			const deleteAllMemos = document.getElementById("id-delete-all-memos")
+			deleteAllMemos.addEventListener("change",(event)=>{
+				const checkboxes = document.getElementsByClassName("class-checkbox")
+				// メモの数分のチェックボックスの数を数えてチェックボックスの数が0であれば何もしない。
+					if(checkboxes.length == 0){
+						return
+					}
+				Array.from(checkboxes).forEach((checkbox) => {
+					if(deleteAllMemos.checked == true){
+						checkbox.checked = true
+					} else {
+						checkbox.checked = false
+					}
+				})
+			})
+
+		// 編集のモーダルの更新ボタンのイベントハンドラー
+		const updateButton = document.getElementById("id-update-button")
+		updateButton.addEventListener("click",(event)=>{
+			// memoIdを取得している。
+			const memoId = document.getElementById("id-memo-id").value
+
+			// モーダルタイトルのコンテンツをmodalTitleElementに代入している。
+			const modalTitleElement = document.getElementById("id-modal-title")
+			// メモリストのタイトルに
+			const titleElementInMemoList = document.getElementById("id-title-in-list-" + memoId)
+			titleElementInMemoList.innerText = modalTitleElement.value
+			// モーダルの本文を編集した内容を反映する。(編集後はモーダルでしか確認できない)
+			document.getElementById("id-body-in-list-" + memoId).value = document.getElementById("id-modal-body").value
+			// 更新日を追加する。
+			const now = new Date()
+			const updatedAt = now.getFullYear() + "-" + (now.getMonth() + 1) + "-" + now.getDate()
+			document.getElementById("id-updated-at-" + memoId).innerText = updatedAt
+			// メモを登録する時のモーダルの左上の題名の設定
+			document.getElementById("exampleModalLabel").innerText = "編集"
+			// モーダルを閉じる。
+			myModal.hide()
+		})
+	</script>
+</html>
